@@ -6,29 +6,37 @@ var scoreBtnEl = document.createElement("button");
 scoreBtnEl.textContent = "High Score";
 body.appendChild(scoreBtnEl);
 
+// display ending screen / high score screen
+var displayMessage = function () {};
+
+// sort the score number
+// find a to push up to local storage and pull local storage
+// highscore as key
+// get the time and parse display as list
+
 // timer
 var timerStartEl = document.createElement("span");
-timerStartEl.textContent = "Timer: " + String.timerEl;
 body.appendChild(timerStartEl);
 timerStartEl.setAttribute("style", "float:right; margin:10px 20px");
 timerStartEl.setAttribute("id", "timer");
-
 var timerEl = document.getElementById("timer");
-function countdown() {
-	var timeLeft = 90;
+var timer = "";
+timerEl.textContent = "Timer: " + timer;
+function countdown(event) {
+	event.stopPropagation();
+	timer = 90;
 
 	var timeInterval = setInterval(function () {
-		if (timeleft >= 1) {
-			timerEl.textContent = timeLeft;
-			timeLeft--;
+		if (timer >= 1) {
+			timerEl.textContent = "Timer: " + timer;
+			timer--;
 		} else {
 			timerEl.textContent = 0;
 			clearInterval(timeInterval);
 			displayMessage();
 		}
 	}, 1000);
-	return countdown;
-} // how to display timer
+}
 
 // start page
 var startBlockEl = document.createElement("div");
@@ -53,10 +61,40 @@ var startBtnEl = document.createElement("button");
 startBtnEl.textContent = "Start!";
 startBlockEl.appendChild(startBtnEl);
 startBtnEl.setAttribute("style", "order:3");
+startBtnEl.addEventListener("click", function (event) {
+	event.stopPropagation();
+});
 
-// maybe do addeventlistener(click) button and display nexst question
+console.log(countdown());
+// maybe do addeventlistener(click) button and display next question
 
-// randomize questions and answers
+// randomize questions and answers (forms)
+//
+
+// array of objects and add an index that goes up.
+//
+var questionBank = [
+	{
+		questions: "this is question 1",
+		choices: ["answer1", "answer1", "answer1", "answer1"],
+		actualAnswer: "actualAnswer1",
+	},
+	{
+		questions: "this is question 1",
+		choices: ["answer1", "answer1", "answer1", "answer1"],
+		actualAnswer: "actualAnswer1",
+	},
+	{
+		questions: "this is question 1",
+		choices: ["answer1", "answer1", "answer1", "answer1"],
+		actualAnswer: "actualAnswer1",
+	},
+	{
+		questions: "this is question 1",
+		choices: ["answer1", "answer1", "answer1", "answer1"],
+		actualAnswer: "actualAnswer1",
+	},
+];
 
 // assign keywords to show right or wrong
 
