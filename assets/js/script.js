@@ -1,30 +1,16 @@
-// the start page
-var body = document.body;
-
-// highscore button
-var scoreBtnEl = document.createElement("button");
-scoreBtnEl.textContent = "High Score";
-body.appendChild(scoreBtnEl);
-
-// display ending screen / high score screen
-var displayMessage = function () {};
-
-// sort the score number
-// find a to push up to local storage and pull local storage
-// highscore as key
-// get the time and parse display as list
+var startPageEl = document.getElementById("start-page");
+var timerEl = document.getElementById("timer");
+var startBtnEl = document.getElementById("start-btn");
+var questionPageEl = document.getElementById("question-page");
+var submagePageEl = document.getElementById("submit-page");
 
 // timer
-var timerStartEl = document.createElement("span");
-body.appendChild(timerStartEl);
-timerStartEl.setAttribute("style", "float:right; margin:10px 20px");
-timerStartEl.setAttribute("id", "timer");
-var timerEl = document.getElementById("timer");
-var timer = "";
-timerEl.textContent = "Timer: " + timer;
-function countdown(event) {
-	event.stopPropagation();
-	timer = 90;
+timerEl.setAttribute("style", "float:right; margin:10px 20px", "display:inline-block");
+// timerStartEl.setAttribute("id", "timer");
+// timerEl.textContent = "Timer: " + timer;
+function countdown() {
+	// event.stopPropagation();
+	var timer = 90;
 
 	var timeInterval = setInterval(function () {
 		if (timer >= 1) {
@@ -37,66 +23,65 @@ function countdown(event) {
 		}
 	}, 1000);
 }
+// countdown();
 
 // start page
-var startBlockEl = document.createElement("div");
-body.appendChild(startBlockEl);
-startBlockEl.setAttribute(
-	"style",
-	"justify-content:center; text-align:center; margin: 500px auto; border: 1px solid lightgrey; display:flex; flex-wrap: wrap; width: 20%;"
-);
+// startBlockEl.setAttribute(
+	// "style",
+	// "justify-content:center; text-align:center; margin: auto; border: 1px solid lightgrey; display:flex; flex-wrap: wrap; width: 20%;"
+// );
 
-var h1El = document.createElement("h1");
-h1El.textContent = "Code Quiz Challenge";
-startBlockEl.appendChild(h1El);
-h1El.setAttribute("style", "order:1");
+// h1El.setAttribute("style", "order:1");
 
-var directionEl = document.createElement("p");
-directionEl.textContent =
-	"Answer the following multiple choice questions. There are no wrong answers. :)";
-startBlockEl.appendChild(directionEl);
-directionEl.setAttribute("style", "order:2");
+// directionEl.setAttribute("style", "order:2");
 
-var startBtnEl = document.createElement("button");
-startBtnEl.textContent = "Start!";
-startBlockEl.appendChild(startBtnEl);
-startBtnEl.setAttribute("style", "order:3");
-startBtnEl.addEventListener("click", function (event) {
-	event.stopPropagation();
-});
+// start button
+// startBtnEl.setAttribute("style", "order:3");
 
-console.log(countdown());
-// maybe do addeventlistener(click) button and display next question
+startBtnEl.addEventListener("click", buildQuiz());
 
-// randomize questions and answers (forms)
-//
-
-// array of objects and add an index that goes up.
-//
 var questionBank = [
 	{
 		questions: "this is question 1",
-		choices: ["answer1", "answer1", "answer1", "answer1"],
+		answers: ["answer1", "answer1", "answer1", "answer1"],
 		actualAnswer: "actualAnswer1",
 	},
 	{
-		questions: "this is question 1",
-		choices: ["answer1", "answer1", "answer1", "answer1"],
-		actualAnswer: "actualAnswer1",
+		questions: "this is question 2",
+		answers: ["answer2", "answer2", "answer2", "answer2"],
+		actualAnswer: "actualAnswer2",
 	},
 	{
-		questions: "this is question 1",
-		choices: ["answer1", "answer1", "answer1", "answer1"],
-		actualAnswer: "actualAnswer1",
+		questions: "this is question 3",
+		answers: ["answer3", "answer3", "answer3", "answer3"],
+		actualAnswer: "actualAnswer3",
 	},
 	{
-		questions: "this is question 1",
-		choices: ["answer1", "answer1", "answer1", "answer1"],
-		actualAnswer: "actualAnswer1",
+		questions: "this is question 4",
+		answers: ["answer4", "answer4", "answer4", "answer4"],
+		actualAnswer: "actualAnswer4",
 	},
 ];
 
-// assign keywords to show right or wrong
+var questionID = 0;
+
+var buildQuiz = function () {
+	countdown();
+	let {questions, answers, actualAnswer} = questions[questionID];
+	console.log
+
+	document.querySelector(h1El) = ` <h1> ${questions} <h1>`;  // help here
+	var answerList = document.createElement("div");
+	answerList.setAttribute("class", "answerList");
+	startBlockEl.appendChild(answerlist);  // help here
+	for (i = 0; i < answers.length; i++) {
+		var answerButton = document.createElement("button");
+		answerButton.setAttribute("class", "answerButton")
+		answerButton.textContent = answers[i]
+		answerList.appendChild(answerButton)
+	};
+
+};
 
 // when finish questions, come to the final page to submit high score
 
