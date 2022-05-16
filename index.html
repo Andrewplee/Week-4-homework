@@ -7,10 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="highscore-button">
+    <span class="highscore-button">
         <a href="./highscore.html">High Score</a></button>
-    </div>
-    <div id="timer" class="timer"></div>
+    </span>
+    <span id="timer" class="timer"></span>
+    <br/>
     <div>
         <div id="start-page">
             <h1>Code Quiz challenge</h1>
@@ -22,13 +23,14 @@
 
         <div id="question-page">
             <h1 class="question-title"></h1>
+            <div id="answerChoices"></div>
         </div>
 
         <div id="submit-page">
             <h1 class="question-title"></h1>
             <p>Thanks for participating your final score is <span id="final-score"></span></p>
             <input type="text" id="name" placeholder="Name"/>
-            <button id="submit-Btn">Submit</button>
+            <button id="submit-Btn"><a href="./highscore.html">Submit</a></button>
         </div>
 
 
