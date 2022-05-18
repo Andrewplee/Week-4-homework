@@ -10,7 +10,7 @@
 
 <body>
     <span class="highscore-button">
-        <a href="./highscore.html">High Score</a></button>
+        <button>High Score</button>
     </span>
     <span id="timer" class="timer"></span>
     <br/>
@@ -28,10 +28,10 @@
             <div id="question-page" class="hide">
                 <h1 id="questionTitle"></h1>
                 <div id="answerChoices">
-                    <button id="answer1"></button>
-                    <button id="answer2"></button>
-                    <button id="answer3"></button>
-                    <button id="answer4"></button>
+                    <button class="answerbtn" id="answer1"></button>
+                    <button class="answerbtn" id="answer2"></button>
+                    <button class="answerbtn" id="answer3"></button>
+                    <button class="answerbtn" id="answer4"></button>
                 </div>
             </div>
 
@@ -39,14 +39,12 @@
                 <p>Thanks for participating your final score is <span id="final-score"></span></p>
                 <label for="full-name">Full Name</label>
                 <input type="text" name="full-name" id="full-name" placeholder="Name"/>
-                <button id="submit-Btn"><a href="./highscore.html">Submit</a></button>
+                <button id="submit-Btn">Submit</button>
             </div>
 
             <div id="highscore-page" class="hide">
                 <h1>Highscore</h1>
-                <ul class="highscoreList">
-
-                </ul>
+                <ol class="highscoreList"></ol>
             </div>
         </section>
     </main>
