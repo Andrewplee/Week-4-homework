@@ -1,10 +1,9 @@
-var blockEl = document.getElementById("block");
 var startPageEl = document.getElementById("start-page");
 var timerEl = document.getElementById("timer");
 var startBtnEl = document.getElementById("start-btn");
 var questionPageEl = document.getElementById("question-page");
 var questionTitle = document.getElementById("questionTitle");
-var submagePageEl = document.getElementById("submit-page");
+var submitPageEl = document.getElementById("submit-page");
 var answerEl = document.getElementById("answerChoices");
 var submitButton = document.getElementById("submit-btn");
 var fullNameInput = document.getElementById("full-name");
@@ -13,16 +12,12 @@ var answerbutton1 = document.getElementById("answer1");
 var answerbutton2 = document.getElementById("answer2");
 var answerbutton3 = document.getElementById("answer3");
 var answerbutton4 = document.getElementById("answer4");
+var highscoreList = document.querySelector(".highscoreList");
+var highscoreButton = document.querySelector(".highscore-button");
 answerbutton1.value = "answer1";
 answerbutton2.value = "answer2";
 answerbutton3.value = "answer3";
 answerbutton4.value = "answer4";
-
-// start page
-blockEl.setAttribute(
-	"style",
-	"justify-content:center; text-align:center; margin: auto; border: 1px solid lightgrey; display:flex; flex-wrap: wrap; width: 20%;"
-);
 
 // h1El.setAttribute("style", "order:1");
 
@@ -35,17 +30,17 @@ var questionBank = [
 	{
 		questions: "this is question 1",
 		answers: ["answer1", "answer2", "answer3", "answer4"],
-		actualAnswer: "answer4",
+		actualAnswer: "answer1",
 	},
 	{
 		questions: "this is question 2",
 		answers: ["answer1", "answer2", "answer3", "answer4"],
-		actualAnswer: "answer3",
+		actualAnswer: "answer1",
 	},
 	{
 		questions: "this is question 3",
 		answers: ["answer1", "answer2", "answer3", "answer4"],
-		actualAnswer: "answer2",
+		actualAnswer: "answer1",
 	},
 	{
 		questions: "this is question 4",
@@ -53,14 +48,9 @@ var questionBank = [
 		actualAnswer: "answer1",
 	},
 ];
+console.log(questionBank);
 
 // timer
-timerEl.setAttribute(
-	"style",
-	"float:right; margin:10px 20px",
-	"display:inline-block"
-);
-
 var timer = 90;
 var countdown = function () {
 	var timeInterval = setInterval(function () {
@@ -70,6 +60,7 @@ var countdown = function () {
 		} else {
 			timerEl.textContent = "Timer: " + 0;
 			clearInterval(timeInterval);
+			submissionPage();
 		}
 	}, 1000);
 };
@@ -93,16 +84,30 @@ var showQuestions = function () {
 	answerbutton4.textContent = displayQuestion.answers[3];
 };
 
-answerChoicesEl.onClick = function (event) {
+var submissionPage = function () {
+	clearInterval(timer);
+	submitPageEl.removeAttribute("class", "hide");
+	questionPageEl.setAttribute("class", "hide");
+};
+
+answerChoicesEl.Onclick = function (event) {
 	if (event.target.value !== displayQuestion.actualAnswer) {
-		timer -= 5;
-		console.log(event.target.value);
-		questionIndex++;
+		timer -= 15;
+		if (timer < 0) {
+			timer = 0;
+		}
+	} else {
+		score = +1;
+	}
+
+	if (questionBank.length === questionIndex + 1) {
+		submissionPage();
 	} else {
 		questionIndex++;
-		score++;
+		showQuestions();
 	}
 };
+console.log(questionIndex);
 
 startBtnEl.addEventListener("click", function () {
 	buildQuiz();
@@ -110,6 +115,18 @@ startBtnEl.addEventListener("click", function () {
 });
 
 // to push onto local storage, i need to create var list
+
+var useStoredData = function () {
+	var data = JSON.parse(localStorage.getItem("scoreboard"));
+
+	data.forEach(function (item) {
+		var liEl = document.createElement("li");
+		liEl.textContent = `${item.userName} has scored ${item.userScore}`;
+		liEl.setAttribute("class", "child");
+		highscoreList.appendChild(liEl);
+	});
+};
+
 submitButton.addEventListener("click", function (event) {
 	event.preventDefault();
 
@@ -118,14 +135,22 @@ submitButton.addEventListener("click", function (event) {
 		userName: fullNameInput.value.trim(),
 	};
 
-	function dynamicallyAdd(addHighscore) {
+	var localStorageAdd = function (addHighscore) {
 		var scoreArray = JSON.parse(localStorage.getItem("scoreboard")) || [];
 		scoreArray.push(addHighscore);
 
 		localStorage.setItem("scoreboard", JSON.stringify(scoreArray));
 		useStoredData();
-	}
-	dynamicallyAdd(highscore.push);
+	};
+	localStorageAdd(highscore.push);
+	return;
+});
+
+highscoreButton.addEventListener("click", function (event) {
+	event.preventDefault();
+	startPageEl.setAttribute("class", "hide");
+	questionPageEl.removeAttribute("class", "hide");
+	submit;
 });
 // when finish questions, come to the final page to submit high score
 
