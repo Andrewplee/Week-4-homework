@@ -1,58 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/style.css">
-</head>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="./assets/css/style.css" />
+	</head>
 
-<body>
-    <header>
-        <span class="highscore-button">
-            <button>High Score</button>
-        </span>
-        <span id="timer" class="timer">Timer: 90</span>
-    </header>
+	<body>
+		<header>
+			<span class="highscore-button">
+				<button>High Score</button>
+			</span>
+			<span id="timer" class="timer">Timer: 90</span>
+		</header>
 
-    <main>
-        <section id="block">
-            <div id="start-page">
-                <h1>Code Quiz challenge</h1>
-                <p>Answer the following multiple choice questions. There are no wrong answers. :)</p>
-                <div>    
-                    <button id="start-btn">Start!</button>
-                </div>
-            </div>
+		<main>
+			<section id="block">
+				<div id="start-page">
+					<h1>Code Quiz challenge</h1>
+					<p>
+						Answer the following multiple choice questions. There are no wrong
+						answers. :)
+					</p>
+					<div>
+						<button id="start-btn">Start!</button>
+					</div>
+				</div>
 
-            <div id="question-page" class="hide">
-                <h1 id="questionTitle"></h1>
-                <div id="answerChoices">
-                    <button class="answerbtn" id="answer1"></button>
-                    <button class="answerbtn" id="answer2"></button>
-                    <button class="answerbtn" id="answer3"></button>
-                    <button class="answerbtn" id="answer4"></button>
-                </div>
-            </div>
+				<div id="question-page" class="hide">
+					<h1 id="questionTitle"></h1>
+					<div id="answerChoices">
+						<button class="answerbtn" id="answer1"></button>
+						<button class="answerbtn" id="answer2"></button>
+						<button class="answerbtn" id="answer3"></button>
+						<button class="answerbtn" id="answer4"></button>
+					</div>
+				</div>
 
-            <div id="submit-page" class="hide">
-                <p class="submit-text">Thank you for participating your final score is <span id="final-score"></span></p>
-                <label for="full-name">Full Name</label>
-                <input type="text" name="full-name" id="full-name" placeholder="Name"/>
-                <button id="submit-Btn">Submit</button>
-            </div>
+				<div id="submit-page" class="hide">
+					<p class="submit-text">
+						Thank you for participating your final score is
+						<span id="final-score"></span>
+					</p>
+					<label for="full-name">Full Name</label>
+					<input
+						type="text"
+						name="full-name"
+						id="full-name"
+						placeholder="Name"
+					/>
+					<button id="submit-Btn">Submit</button>
+				</div>
 
-            <div id="highscore-page" class="hide">
-                <h1>Highscore Board</h1>
-                <ol class="highscoreList"></ol>
-                <button id="reload">Play Again</button>
-            </div>
-        </section>
-    </main>
-    <script src="./assets/js/script.js"></script>
-</body>
+				<div id="highscore-page" class="hide">
+					<h1>Highscore Board</h1>
+					<ol class="highscoreList"></ol>
+					<button id="reload">Return to Start</button>
+				</div>
+			</section>
+		</main>
+		<script src="./assets/js/script.js"></script>
+	</body>
 </html>

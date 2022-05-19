@@ -159,12 +159,24 @@ submitButton.addEventListener("click", function (event) {
 	useStoredData();
 });
 
+var useStoredData1 = function () {
+	var data = JSON.parse(localStorage.getItem("scoreboard"));
+	data.forEach(function (item) {
+		var liEl = document.createElement("li");
+		liEl.textContent = `${item.userName} has scored ${item.userScore}`;
+		liEl.setAttribute("class", "child");
+		highscoreList.appendChild(liEl);
+	});
+};
+
 highscoreButton.addEventListener("click", function (event) {
 	event.preventDefault();
 	startPageEl.setAttribute("class", "hide");
 	questionPageEl.setAttribute("class", "hide");
 	submitPageEl.setAttribute("class", "hide");
 	highscorePage.removeAttribute("class", "hide");
+
+	useStoredData1();
 });
 
 playagainButton.addEventListener("click", function () {
