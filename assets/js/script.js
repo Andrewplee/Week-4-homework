@@ -17,6 +17,7 @@ var highscoreList = document.querySelector(".highscoreList");
 var highscoreButton = document.querySelector(".highscore-button");
 var highscorePage = document.querySelector("#highscore-page");
 var finalScore = document.querySelector("#final-score");
+var playagainButton = document.getElementById("reload");
 answerbutton1.value = "answer1";
 answerbutton2.value = "answer2";
 answerbutton3.value = "answer3";
@@ -30,40 +31,40 @@ answerbutton4.value = "answer4";
 // startBtnEl.setAttribute("style", "order:3");
 
 var questionBank = [
-  {
-    questions: "this is question 1",
-    answers: ["answer1", "answer2", "answer3", "answer4"],
-    actualAnswer: "answer1",
-  },
-  {
-    questions: "this is question 2",
-    answers: ["2answer1", "answer2", "answer3", "answer4"],
-    actualAnswer: "2answer1",
-  },
-  {
-    questions: "this is question 3",
-    answers: ["answer1", "answer2", "answer3", "answer4"],
-    actualAnswer: "answer1",
-  },
-  {
-    questions: "this is question 4",
-    answers: ["answer1", "answer2", "answer3", "answer4"],
-    actualAnswer: "answer1",
-  },
+	{
+		questions: "this is question 1",
+		answers: ["answer1", "answer2", "answer3", "answer4"],
+		actualAnswer: "answer1",
+	},
+	{
+		questions: "this is question 2",
+		answers: ["2answer1", "answer2", "answer3", "answer4"],
+		actualAnswer: "2answer1",
+	},
+	{
+		questions: "this is question 3",
+		answers: ["answer1", "answer2", "answer3", "answer4"],
+		actualAnswer: "answer1",
+	},
+	{
+		questions: "this is question 4",
+		answers: ["answer1", "answer2", "answer3", "answer4"],
+		actualAnswer: "answer1",
+	},
 ];
 console.log(questionBank);
 
 // timer
-var timer = 90;
+var timer = 89;
 var timeInterval;
 var countdown = function () {
-  timeInterval = setInterval(function () {
-    timerEl.textContent = "Timer: " + timer;
-    timer--;
-    if (timer <= 0) {
-      submissionPage();
-    }
-  }, 1000);
+	timeInterval = setInterval(function () {
+		timerEl.textContent = "Timer: " + timer;
+		timer--;
+		if (timer <= 0) {
+			submissionPage();
+		}
+	}, 1000);
 };
 
 //question page
@@ -71,97 +72,101 @@ var questionIndex = 0;
 var score = 0;
 
 var buildQuiz = function () {
-  startPageEl.setAttribute("class", "hide");
-  questionPageEl.removeAttribute("class", "hide");
-  showQuestions();
+	startPageEl.setAttribute("class", "hide");
+	questionPageEl.removeAttribute("class", "hide");
+	showQuestions();
 };
 
 var showQuestions = function () {
-  var displayQuestion = questionBank[questionIndex];
+	var displayQuestion = questionBank[questionIndex];
 
-  questionTitle.textContent = displayQuestion.questions;
-  answerbutton1.textContent = displayQuestion.answers[0];
-  answerbutton2.textContent = displayQuestion.answers[1];
-  answerbutton3.textContent = displayQuestion.answers[2];
-  answerbutton4.textContent = displayQuestion.answers[3];
+	questionTitle.textContent = displayQuestion.questions;
+	answerbutton1.textContent = displayQuestion.answers[0];
+	answerbutton2.textContent = displayQuestion.answers[1];
+	answerbutton3.textContent = displayQuestion.answers[2];
+	answerbutton4.textContent = displayQuestion.answers[3];
 
-  answerbutton1.addEventListener("click", checkAnswer);
-  answerbutton2.addEventListener("click", checkAnswer);
-  answerbutton3.addEventListener("click", checkAnswer);
-  answerbutton4.addEventListener("click", checkAnswer);
+	answerbutton1.addEventListener("click", checkAnswer);
+	answerbutton2.addEventListener("click", checkAnswer);
+	answerbutton3.addEventListener("click", checkAnswer);
+	answerbutton4.addEventListener("click", checkAnswer);
 };
 
 var submissionPage = function () {
-  clearInterval(timeInterval);
-  submitPageEl.removeAttribute("class", "hide");
-  questionPageEl.setAttribute("class", "hide");
-  finalScore.textContent = score;
+	clearInterval(timeInterval);
+	submitPageEl.removeAttribute("class", "hide");
+	questionPageEl.setAttribute("class", "hide");
+	finalScore.textContent = score;
 };
 
 function checkAnswer() {
-  if (this.innerText !== questionBank[questionIndex].actualAnswer) {
-    timer -= 15;
-    if (timer < 0) {
-      timer = 0;
-    }
-    console.log("wrong");
-  } else {
-    score++;
-    console.log("correct");
-  }
+	if (this.innerText !== questionBank[questionIndex].actualAnswer) {
+		timer -= 15;
+		if (timer < 0) {
+			timer = 0;
+		}
+		console.log("wrong");
+	} else {
+		score++;
+		console.log("correct");
+	}
 
-  questionIndex++;
+	questionIndex++;
 
-  if (questionBank.length === questionIndex) {
-    submissionPage();
-  } else {
-    showQuestions();
-  }
+	if (questionBank.length === questionIndex) {
+		submissionPage();
+	} else {
+		showQuestions();
+	}
 }
 
 console.log(questionIndex);
 
 startBtnEl.addEventListener("click", function () {
-  buildQuiz();
-  countdown();
+	buildQuiz();
+	countdown();
 });
 
 // to push onto local storage, i need to create var list
 
 var useStoredData = function () {
-  var data = JSON.parse(localStorage.getItem("scoreboard"));
+	var data = JSON.parse(localStorage.getItem("scoreboard"));
 
-  console.log("Data", data);
-  highscorePage.removeAttribute("class", "hide");
-  submitPageEl.setAttribute("class", "hide");
+	console.log("Data", data);
+	highscorePage.removeAttribute("class", "hide");
+	submitPageEl.setAttribute("class", "hide");
 
-  data.forEach(function (item) {
-    var liEl = document.createElement("li");
-    liEl.textContent = `${item.userName} has scored ${item.userScore}`;
-    liEl.setAttribute("class", "child");
-    highscoreList.appendChild(liEl);
-  });
+	data.forEach(function (item) {
+		var liEl = document.createElement("li");
+		liEl.textContent = `${item.userName} has scored ${item.userScore}`;
+		liEl.setAttribute("class", "child");
+		highscoreList.appendChild(liEl);
+	});
 };
 
 submitButton.addEventListener("click", function (event) {
-  event.preventDefault();
+	event.preventDefault();
 
-  var highscore = {
-    userScore: score,
-    userName: fullNameInput.value.trim(),
-  };
+	var highscore = {
+		userScore: score,
+		userName: fullNameInput.value.trim(),
+	};
 
-  //  var localStorageAdd = function (addHighscore) {
-  var scoreArray = JSON.parse(localStorage.getItem("scoreboard")) || [];
-  scoreArray.push(highscore);
+	var scoreArray = JSON.parse(localStorage.getItem("scoreboard")) || [];
+	scoreArray.push(highscore);
 
-  localStorage.setItem("scoreboard", JSON.stringify(scoreArray));
-  useStoredData();
+	localStorage.setItem("scoreboard", JSON.stringify(scoreArray));
+	useStoredData();
 });
 
 highscoreButton.addEventListener("click", function (event) {
-  event.preventDefault();
-  startPageEl.setAttribute("class", "hide");
-  questionPageEl.removeAttribute("class", "hide");
-  submit;
+	event.preventDefault();
+	startPageEl.setAttribute("class", "hide");
+	questionPageEl.setAttribute("class", "hide");
+	submitPageEl.setAttribute("class", "hide");
+	highscorePage.removeAttribute("class", "hide");
+});
+
+playagainButton.addEventListener("click", function () {
+	location.reload();
 });
