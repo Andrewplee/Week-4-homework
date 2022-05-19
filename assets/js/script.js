@@ -23,13 +23,7 @@ answerbutton2.value = "answer2";
 answerbutton3.value = "answer3";
 answerbutton4.value = "answer4";
 
-// h1El.setAttribute("style", "order:1");
-
-// directionEl.setAttribute("style", "order:2");
-
-// start button
-// startBtnEl.setAttribute("style", "order:3");
-
+// question bank
 var questionBank = [
 	{
 		questions: "this is question 1",
@@ -92,6 +86,7 @@ var showQuestions = function () {
 	answerbutton4.addEventListener("click", checkAnswer);
 };
 
+// submit page after
 var submissionPage = function () {
 	clearInterval(timeInterval);
 	submitPageEl.removeAttribute("class", "hide");

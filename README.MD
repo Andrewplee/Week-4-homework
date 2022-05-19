@@ -46,6 +46,9 @@ This is the highscore board.
 
 # Credit
 
+- Google fonts [Google fonts](https://fonts.google.com/)
+- Location Function [mdn web docs on location function](https://developer.mozilla.org/en-US/docs/Web/API/Location)
+
 # License
 
 Copyright (c) 2022 Trilogy Education Services, LLC, a 2U, Inc. brand.
